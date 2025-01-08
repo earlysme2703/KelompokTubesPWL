@@ -18,9 +18,9 @@
                             <input 
                                 type="text" 
                                 name="search" 
-                                placeholder="Search users..." 
+                                placeholder="  Search users..." 
                                 value="{{ request('search') }}" 
-                                class="border rounded p-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                                class="border rounded p-1 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
                             <x-primary-button>Cari</x-primary-button>
                         </form>
                     </div>

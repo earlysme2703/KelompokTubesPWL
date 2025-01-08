@@ -23,27 +23,27 @@
                     @endrole
                     @role('Admin')
                     <x-nav-link :href="route('branch.index')" :active="request()->routeIs('branch.index')" class="text-black hover:text-orange-900">
-                        {{ __('Branches') }}
+                        {{ __('Cabang') }}
                     </x-nav-link>
                     @endrole
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko'))
                     <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')" class="text-black hover:text-orange-900">
-                        {{ __('Employees') }}
+                        {{ __('Pegawai') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Gudang'))
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')" class="text-black hover:text-orange-900">
-                        {{ __('Products') }}
+                        {{ __('Produk') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir') || auth()->user()->hasRole('Supervisor'))
                     <x-nav-link :href="route('transaction.index')" :active="request()->routeIs('transaction.index')" class="text-black hover:text-orange-900">
-                        {{ __('Transaction') }}
+                        {{ __('Transaksi') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir'))
                     <x-nav-link :href="route('transactionDetail.index')" :active="request()->routeIs('transactionDetail.index')" class="text-black hover:text-orange-900">
-                        {{ __('Transaction Details') }}
+                        {{ __('Detail Transaksi') }}
                     </x-nav-link>
                    @endif
                 </div>

@@ -1,32 +1,31 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Transaction Details') }}
+            {{ __('Detail Transaksi') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
-                    <!-- Tombol untuk menambah detail transaksi -->
-                    <a href="{{ route('transactionDetail.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 inline-block">Add New Transaction Detail</a>
-
-                    <!-- Form pencarian -->
-                    <form method="GET" action="{{ route('transactionDetail.index') }}" class="mb-4">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search transaction ID or product..." class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Search</button>
-                    </form>
-
-                    <!-- Tabel daftar detail transaksi -->
+                    <div class="flex justify-between items-center mb-4">
+                        <a href="{{ route('transactionDetail.create') }}">
+                            <x-primary-button>Tambah Detail Transaksi</x-primary-button>
+                        </a>
+                        <form method="GET" action="{{ route('transactionDetail.index') }}" class="flex space-x-2">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan ID" class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                            <x-primary-button>Cari</x-primary-button>
+                        </form>
+                    </div>
                     <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
-                                <th class="border px-4 py-2 dark:border-gray-600">Transaction ID</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Product</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Quantity</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Price</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Actions</th>
+                                <th class="border px-4 py-2 dark:border-gray-600">ID Transaksi</th>
+                                <th class="border px-4 py-2 dark:border-gray-600">Produk</th>
+                                <th class="border px-4 py-2 dark:border-gray-600">Kuantitas</th>
+                                <th class="border px-4 py-2 dark:border-gray-600">Harga</th>
+                                <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,14 +35,18 @@
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $detail->product->product_name ?? 'N/A' }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $detail->quantity }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ number_format($detail->price, 0, ',', '.') }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">
-                                        <a href="{{ route('transactionDetail.edit', $detail->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 inline-block">Edit</a>
-                                        <form action="{{ route('transactionDetail.destroy', $detail->id) }}" method="POST" style="display:inline-block;">
+                                    <td class="border px-4 py-2 dark:border-gray-600 flex space-x-2">
+                                        <a href="{{ route('transactionDetail.edit', $detail->id) }}">
+                                            <x-primary-button>Edit</x-primary-button>
+                                        </a>
+                                        <a href="{{ route('transactionDetail.print', $detail->id) }}">
+                                            <x-primary-button>Print</x-primary-button>
+                                        </a>
+                                        <form action="{{ route('transactionDetail.destroy', $detail->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <x-danger-button>Delete</x-danger-button>
                                         </form>
-                                        <a href="{{ route('transactionDetail.print', $detail->id) }}" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Print</a>
                                     </td>
                                 </tr>
                             @empty
@@ -54,13 +57,15 @@
                         </tbody>
                     </table>
 
+                    <!-- Tombol Print All -->
+                    <a href="{{ route('transactionDetail.printAll') }}" class="mt-4 inline-block">
+                        <x-primary-button>Print All Details</x-primary-button>
+                    </a>
+
                     <!-- Pagination -->
                     <div class="mt-4">
                         {{ $transactionDetails->withQueryString()->links() }}
                     </div>
-
-                    <!-- Print All -->
-                    <a href="{{ route('transactionDetail.printAll') }}" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 mb-4 inline-block">Print All Details</a>
                 </div>
             </div>
         </div>

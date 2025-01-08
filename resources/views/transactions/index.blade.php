@@ -1,27 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Transactions') }}
+            {{ __('Transaksi') }}
         </h2>
     </x-slot>
 
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
                     <div class="flex justify-between items-center mb-4">
                         <a href="{{ route('transaction.create') }}">
                             <x-primary-button>Tambah Transaksi</x-primary-button>
                         </a>
-
-                        <!-- Form Pencarian (Kanan) -->
                         <form method="GET" action="{{ route('transaction.index') }}" class="flex space-x-2">
                             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari transaksi..." class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
                             <x-primary-button>Cari</x-primary-button>
                         </form>
                     </div>
-
-                    <!-- Tabel daftar transaksi -->
                     <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
@@ -63,12 +59,10 @@
                         </tbody>
                     </table>
 
-                    <!-- Tombol Print All -->
                     <a href="{{ route('transaction.printAll') }}" class="mt-4 inline-block">
                         <x-primary-button>Print All Transactions</x-primary-button>
                     </a>
 
-                    <!-- Pagination -->
                     <div class="mt-4">
                         {{ $transactions->withQueryString()->links() }}
                     </div>
