@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Products') }}
+            {{ __('Produk') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,7 @@
                             <input 
                                 type="text" 
                                 name="search" 
-                                placeholder="  Search products..." 
+                                placeholder="  Cari produk.." 
                                 value="{{ request('search') }}" 
                                 class="border rounded p-1 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
                             <x-primary-button>Cari</x-primary-button>

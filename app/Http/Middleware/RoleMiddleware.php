@@ -31,7 +31,7 @@ class RoleMiddleware
         return redirect()->route('dashboard.kasir');
     } elseif ($user->hasRole('Supervisor') && !$request->routeIs('dashboard.supervisor')) {
         return redirect()->route('dashboard.supervisor');
-    } elseif ($user->hasRole('Manajer Toko') && !$request->routeIs('dashboard.manajer')) {
+    } elseif ($user->hasRole('Manajer') && !$request->routeIs('dashboard.manajer')) {
         return redirect()->route('dashboard.manajer');
     } elseif ($user->hasRole('Gudang') && !$request->routeIs('dashboard.gudang')) {
         return redirect()->route('dashboard.gudang');

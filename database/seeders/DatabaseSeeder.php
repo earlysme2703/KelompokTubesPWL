@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call([
-            BranchSeeder::class,        // Pertama, buat cabang    
-            ProductSeeder::class,       // Ketiga, buat produk
-            RoleSeeder::class,          // Keempat, buat role
-            TransactionSeeder::class,   // Kelima, buat transaksi
+            BranchSeeder::class,        
+            ProductSeeder::class,      
+            RoleSeeder::class,          
+            TransactionSeeder::class,   
             TransactionDetailSeeder::class,
         ]);
     }

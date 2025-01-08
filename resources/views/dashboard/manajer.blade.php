@@ -1,85 +1,59 @@
 <x-app-layout>
-    <div class="container">
-        <h1 class="text-2xl font-bold mb-4">Dashboard Manajer Toko</h1>
-
-        <!-- Statistik Pendapatan -->
-        <div class="grid grid-cols-3 gap-4 mb-6">
-            <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
-                <h2 class="text-lg font-semibold">Pendapatan Hari Ini</h2>
-                <p class="text-2xl font-bold text-green-500">Rp 5.000.000</p>
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Dashboard') }} 
+                @if(auth()->check())  <!-- Periksa jika pengguna sudah login -->
+                     {{ auth()->user()->getRoleNames()->first() }}  <!-- Menampilkan role pengguna -->
+                @endif
+            </h2>
+        </x-slot>
+    
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4"></h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Card 1 -->
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h2 class="text-lg font-semibold">Total Penjualan</h2>
+                <p class="text-2xl font-bold mt-2">Rp 15.000.000</p>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
-                <h2 class="text-lg font-semibold">Pendapatan Minggu Ini</h2>
-                <p class="text-2xl font-bold text-green-500">Rp 25.000.000</p>
+            <!-- Card 2 -->
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h2 class="text-lg font-semibold">Produk Terjual</h2>
+                <p class="text-2xl font-bold mt-2">350</p>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
-                <h2 class="text-lg font-semibold">Pendapatan Bulan Ini</h2>
-                <p class="text-2xl font-bold text-green-500">Rp 100.000.000</p>
+            <!-- Card 3 -->
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h2 class="text-lg font-semibold">Stok Tersisa</h2>
+                <p class="text-2xl font-bold mt-2">120</p>
             </div>
         </div>
 
-        <!-- Grafik Penjualan Produk Terlaris -->
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-4 mb-6">
-            <h2 class="text-xl font-semibold mb-4">Produk Terlaris</h2>
-            <canvas id="topProductsChart"></canvas>
-        </div>
-
-        <!-- Kinerja Tim -->
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
-            <h2 class="text-xl font-semibold mb-4">Kinerja Tim</h2>
-            <table class="table-auto w-full text-left">
-                <thead>
-                    <tr class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                        <th class="px-4 py-2">Nama Kasir</th>
-                        <th class="px-4 py-2">Jumlah Transaksi</th>
-                        <th class="px-4 py-2">Total Pendapatan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="px-4 py-2">Kasir A</td>
-                        <td class="px-4 py-2">50</td>
-                        <td class="px-4 py-2">Rp 10.000.000</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2">Kasir B</td>
-                        <td class="px-4 py-2">40</td>
-                        <td class="px-4 py-2">Rp 8.000.000</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2">Kasir C</td>
-                        <td class="px-4 py-2">30</td>
-                        <td class="px-4 py-2">Rp 6.000.000</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="mt-6">
+            <h2 class="text-xl font-bold mb-2">Daftar Transaksi Terbaru</h2>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-2 text-left text-sm font-medium">Tanggal</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium">Pelanggan</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2">2025-01-08</td>
+                            <td class="border px-4 py-2">John Doe</td>
+                            <td class="border px-4 py-2">Rp 500.000</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">2025-01-07</td>
+                            <td class="border px-4 py-2">Jane Smith</td>
+                            <td class="border px-4 py-2">Rp 750.000</td>
+                        </tr>
+                        <!-- Tambahkan data lainnya -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-    <!-- Script untuk Grafik -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('topProductsChart').getContext('2d');
-        const topProductsChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Produk A', 'Produk B', 'Produk C', 'Produk D', 'Produk E'],
-                datasets: [{
-                    label: 'Penjualan',
-                    data: [50, 40, 30, 20, 10],
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
 </x-app-layout>
-

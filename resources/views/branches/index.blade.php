@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Branches') }}
+            {{ __('Cabang') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <div class="flex justify-between items-center mb-4">
                         <div></div>
                         <a href="{{ route('branch.create') }}">
-                            <x-primary-button>Tambah Branch</x-primary-button>
+                            <x-primary-button>Tambah Cabang</x-primary-button>
                         </a>
                     </div>
 

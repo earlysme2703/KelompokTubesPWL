@@ -18,7 +18,7 @@
                             <input 
                                 type="text" 
                                 name="search" 
-                                placeholder="  Search users..." 
+                                placeholder="   Cari user" 
                                 value="{{ request('search') }}" 
                                 class="border rounded p-1 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
                             <x-primary-button>Cari</x-primary-button>
@@ -44,12 +44,10 @@
                                     <td class="border px-4 py-2">{{ $user->email }}</td>
                                     <td class="border px-4 py-2">{{ $user->getRoleNames()->implode(', ') }}</td>
                                     <td class="border px-4 py-2 flex space-x-2">
-                                        <!-- Tombol Edit -->
+                                        
                                         <a href="{{ route('users.edit', $user->id) }}">
                                             <x-primary-button>Edit</x-primary-button>
                                         </a>
-
-                                        
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
@@ -60,13 +58,9 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                    <!-- Pagination -->
                     <div class="mt-4">
                         {{ $users->links() }}
                     </div>
-
-                    <!-- Modal Konfirmasi Hapus -->
                     <x-modal name="confirm-user-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">
                             @method('delete')

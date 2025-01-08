@@ -1,24 +1,23 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-    <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
+                
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-black" />
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+              
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-black hover:text-orange-900">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-black  hover:text-orange-900">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     
                     @role('Admin')
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-black hover:text-orange-900">
-                        {{ __('Users') }}
+                        {{ __('User') }}
                     </x-nav-link>
                     @endrole
                     @role('Admin')
@@ -26,12 +25,12 @@
                         {{ __('Cabang') }}
                     </x-nav-link>
                     @endrole
-                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko'))
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer'))
                     <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')" class="text-black hover:text-orange-900">
                         {{ __('Pegawai') }}
                     </x-nav-link>
                     @endif
-                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Gudang'))
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Gudang'))
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')" class="text-black hover:text-orange-900">
                         {{ __('Produk') }}
                     </x-nav-link>
@@ -49,12 +48,12 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+   
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black bg-white hover:text-gray-700focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -66,7 +65,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')" class="text-gray-300 hover:text-gray-400">
+                        <x-dropdown-link :href="route('profile.edit')" class="text-black hover:text-orange-900">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -76,7 +75,7 @@
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="text-gray-300 hover:text-gray-400">
+                                                this.closest('form').submit();" class="text-black hover:text-orange-900">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
