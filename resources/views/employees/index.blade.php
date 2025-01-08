@@ -5,15 +5,21 @@
         </h2>
     </x-slot>
 
-    <div class="py-6"> <!-- Ubah padding untuk mendekatkan konten ke header -->
+    <div class="py-2"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
-                    <!-- Filter dan Tambah -->
+               
                     <div class="flex justify-between items-center mb-4">
+                        
+                        <a href="{{ route('employee.create') }}">
+                            <x-primary-button>Tambah Pegawai</x-primary-button>
+                        </a>
+
+                       
                         <form method="GET" action="{{ route('employee.index') }}" class="flex space-x-2">
-                            <select name="branch_id" class="border rounded-md px-8 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
-                                <option value="">Semua Cabang</option>
+                            <select name="branch_id" class="border rounded-md px-7 py-1 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                                <option value="">Semua Cabang  </option>
                                 @foreach ($branches as $branch)
                                     <option value="{{ $branch->id }}" {{ $selectedBranch == $branch->id ? 'selected' : '' }}>
                                         {{ $branch->branch_name }}
@@ -22,12 +28,9 @@
                             </select>
                             <x-primary-button>Filter</x-primary-button>
                         </form>
-                        <a href="{{ route('employee.create') }}">
-                            <x-primary-button>Tambah Pegawai</x-primary-button>
-                        </a>
                     </div>
 
-                    <!-- Tabel daftar pegawai -->
+                    
                     <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
@@ -36,7 +39,6 @@
                                 <th class="border px-4 py-2 dark:border-gray-600">Posisi</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Cabang</th>
                                 <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +67,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Pagination -->
                     <div class="mt-4">
                         {{ $employees->withQueryString()->links() }}
                     </div>

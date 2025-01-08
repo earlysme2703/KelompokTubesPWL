@@ -5,19 +5,17 @@
         </h2>
     </x-slot>
 
-    <div class="py-6"> <!-- Mengurangi padding untuk mendekatkan konten ke header -->
+    <div class="py-2"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
-                    <!-- Tombol Tambah -->
                     <div class="flex justify-between items-center mb-4">
-                        <div></div> <!-- Placeholder untuk menjaga layout agar tombol tambah sejajar -->
+                        <div></div>
                         <a href="{{ route('branch.create') }}">
                             <x-primary-button>Tambah Branch</x-primary-button>
                         </a>
                     </div>
 
-                    <!-- Tabel daftar branch -->
                     <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
@@ -50,7 +48,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Pagination -->
                     <div class="mt-4">
                         {{ $branches->links('pagination::tailwind', ['class' => 'text-gray-900 dark:text-gray-100']) }}
                     </div>

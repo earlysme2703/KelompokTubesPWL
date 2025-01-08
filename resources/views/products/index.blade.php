@@ -5,58 +5,63 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
-                    <!-- Form pencarian dan tombol tambah -->
+                <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex justify-between items-center mb-4">
+                        <a href="{{ route('product.create') }}">
+                            <x-primary-button>Tambah Produk</x-primary-button>
+                        </a>
+
                         <form method="GET" action="{{ route('product.index') }}" class="flex items-center space-x-2">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products..." class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Search</button>
+                            <input 
+                                type="text" 
+                                name="search" 
+                                placeholder="  Search products..." 
+                                value="{{ request('search') }}" 
+                                class="border rounded p-1 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                            <x-primary-button>Cari</x-primary-button>
                         </form>
-                        <a href="{{ route('product.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Add New Product</a>
                     </div>
 
-                    <!-- Tabel daftar produk -->
-                    <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
+                    <table class="table-auto w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
-                                <th class="border px-4 py-2 dark:border-gray-600">ID</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Product Name</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Price</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Stock</th>
-                                <th class="border px-4 py-2 dark:border-gray-600 w-24 text-center">Actions</th>
+                                <th class="border px-4 py-2">ID</th>
+                                <th class="border px-4 py-2">Nama Produk</th>
+                                <th class="border px-4 py-2">Harga</th>
+                                <th class="border px-4 py-2">Stok</th>
+                                <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($products as $product)
+                            @foreach ($products as $product)
                                 <tr class="bg-white dark:bg-gray-800">
-                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $product->id }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $product->product_name }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $product->price }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $product->stock }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600 w-24 text-center">
-                                        <a href="{{ route('product.edit', $product->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 inline-block">Edit</a>
-                                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline-block;">
+                                    <td class="border px-4 py-2">{{ $product->id }}</td>
+                                    <td class="border px-4 py-2">{{ $product->product_name }}</td>
+                                    <td class="border px-4 py-2">{{ $product->price }}</td>
+                                    <td class="border px-4 py-2">{{ $product->stock }}</td>
+                                    <td class="border px-4 py-2 flex space-x-2">
+                                        <a href="{{ route('product.edit', $product->id) }}">
+                                            <x-primary-button>Edit</x-primary-button>
+                                        </a>
+                                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <x-danger-button>Hapus</x-danger-button>
                                         </form>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center py-4">No products found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
 
-                    <!-- Pagination -->
+                 
                     <div class="mt-4">
                         {{ $products->withQueryString()->links() }}
                     </div>
+
                 </div>
             </div>
         </div>

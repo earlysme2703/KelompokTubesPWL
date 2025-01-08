@@ -5,14 +5,15 @@
         </h2>
     </x-slot>
 
-    <div class="py-6"> <!-- Mengurangi jarak untuk mendekatkan konten ke header -->
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-
-                    <!-- Form Pencarian dan Tombol Tambah -->
                     <div class="flex justify-between items-center mb-4">
-                        <!-- Form Search -->
+                        <a href="{{ route('users.create') }}">
+                            <x-primary-button>Tambah User</x-primary-button>
+                        </a>
+
                         <form method="GET" action="{{ route('users.index') }}" class="flex items-center space-x-2">
                             <input 
                                 type="text" 
@@ -22,14 +23,8 @@
                                 class="border rounded p-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
                             <x-primary-button>Cari</x-primary-button>
                         </form>
-
-                        <!-- Tombol Tambah User -->
-                        <a href="{{ route('users.create') }}">
-                            <x-primary-button>Tambah User</x-primary-button>
-                        </a>
                     </div>
 
-                    <!-- Tabel Daftar User -->
                     <table class="table-auto w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
@@ -54,7 +49,7 @@
                                             <x-primary-button>Edit</x-primary-button>
                                         </a>
 
-                                        <!-- Form Hapus -->
+                                        
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
