@@ -4,32 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Branch;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class EmployeeController extends Controller
 {
     public function index(Request $request)
-{
-    $query = Employee::query();
+    {
+        $branches = Branch::all();
+        $selectedBranch = $request->get('branch_id');
 
-    // Search functionality
-    if ($request->has('search')) {
-        $search = $request->input('search');
-        $query->where('name', 'like', '%' . $search . '%')
-              ->orWhere('position', 'like', '%' . $search . '%')
-              ->orWhereHas('branch', function ($q) use ($search) {
-                  $q->where('branch_name', 'like', '%' . $search . '%');
-              });
+        $query = Employee::with('branch'); // Tambahkan eager loading
+
+        // Filter by branch
+        if ($selectedBranch) {
+            $query->where('branch_id', $selectedBranch);
+        }
+
+        $employees = $query->paginate(5);
+
+        return view('employees.index', compact('employees', 'branches', 'selectedBranch'));
     }
-
-    // Pagination
-    $employees = $query->paginate(5);
-
-    return view('employees.index', compact('employees'));
-}
 
     public function create()
     {
@@ -50,23 +44,22 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'position' => 'required|in:Store Manager,Supervisor,Cashier,Waiter,Cleaner',
-        'branch_id' => 'required|exists:branches,id',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'position' => 'required|in:Store Manager,Supervisor,Cashier,Waiter,Cleaner',
+            'branch_id' => 'required|exists:branches,id',
+        ]);
 
-    $employee = Employee::findOrFail($id);
-    $employee->update([
-        'name' => $request->name,
-        'position' => $request->position,
-        'branch_id' => $request->branch_id,
-    ]);
+        $employee = Employee::findOrFail($id);
+        $employee->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'branch_id' => $request->branch_id,
+        ]);
 
-    return redirect()->route('employee.index')->with('success', 'Employee updated successfully!');
-}
-
+        return redirect()->route('employee.index')->with('success', 'Employee updated successfully!');
+    }
 
     public function destroy(Employee $employee)
     {

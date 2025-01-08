@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,8 @@ class ProductController extends Controller
 {
     public function index(Request $request)
 {
+    // $employees = Employee::with('branch')->paginate(10);
+    // return view('employee.index', compact('employees'));
     $query = Product::query();
 
     // Search functionality

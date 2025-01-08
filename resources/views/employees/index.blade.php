@@ -5,18 +5,27 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6"> <!-- Ubah padding untuk mendekatkan konten ke header -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
-                    <!-- Form pencarian -->
-                    <form method="GET" action="{{ route('employee.index') }}" class="mb-4">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari pegawai..." class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Cari</button>
-                    </form>
-
-                    <!-- Tombol untuk menambah pegawai -->
-                    <a href="{{ route('employee.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 inline-block">Tambah Pegawai</a>
+                    <!-- Filter dan Tambah -->
+                    <div class="flex justify-between items-center mb-4">
+                        <form method="GET" action="{{ route('employee.index') }}" class="flex space-x-2">
+                            <select name="branch_id" class="border rounded-md px-8 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                                <option value="">Semua Cabang</option>
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}" {{ $selectedBranch == $branch->id ? 'selected' : '' }}>
+                                        {{ $branch->branch_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-primary-button>Filter</x-primary-button>
+                        </form>
+                        <a href="{{ route('employee.create') }}">
+                            <x-primary-button>Tambah Pegawai</x-primary-button>
+                        </a>
+                    </div>
 
                     <!-- Tabel daftar pegawai -->
                     <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
@@ -26,7 +35,8 @@
                                 <th class="border px-4 py-2 dark:border-gray-600">Nama</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Posisi</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Cabang</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Aksi</th>
+                                <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -36,12 +46,14 @@
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $employee->name }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $employee->position }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $employee->branch->branch_name }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">
-                                        <a href="{{ route('employee.edit', $employee->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 inline-block">Edit</a>
-                                        <form action="{{ route('employee.destroy', $employee->id) }}" method="POST" style="display:inline-block;">
+                                    <td class="border px-4 py-2 flex justify-center items-center space-x-2">
+                                        <a href="{{ route('employee.edit', $employee->id) }}">
+                                            <x-primary-button>Edit</x-primary-button>
+                                        </a>
+                                        <form action="{{ route('employee.destroy', $employee->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                            <x-danger-button>Hapus</x-danger-button>
                                         </form>
                                     </td>
                                 </tr>

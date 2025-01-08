@@ -6,43 +6,43 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-black" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-300">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-black hover:text-orange-900">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     
                     @role('Admin')
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-black">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-black hover:text-orange-900">
                         {{ __('Users') }}
                     </x-nav-link>
                     @endrole
                     @role('Admin')
-                    <x-nav-link :href="route('branch.index')" :active="request()->routeIs('branch.index')" class="text-black hover:text-gray-500">
+                    <x-nav-link :href="route('branch.index')" :active="request()->routeIs('branch.index')" class="text-black hover:text-orange-900">
                         {{ __('Branches') }}
                     </x-nav-link>
                     @endrole
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko'))
-                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')" class="text-black hover:text-gray-400">
+                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')" class="text-black hover:text-orange-900">
                         {{ __('Employees') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Gudang'))
-                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')" class="text-black hover:text-gray-400">
+                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')" class="text-black hover:text-orange-900">
                         {{ __('Products') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir') || auth()->user()->hasRole('Supervisor'))
-                    <x-nav-link :href="route('transaction.index')" :active="request()->routeIs('transaction.index')" class="text-black hover:text-gray-400">
+                    <x-nav-link :href="route('transaction.index')" :active="request()->routeIs('transaction.index')" class="text-black hover:text-orange-900">
                         {{ __('Transaction') }}
                     </x-nav-link>
                     @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir'))
-                    <x-nav-link :href="route('transactionDetail.index')" :active="request()->routeIs('transactionDetail.index')" class="text-black hover:text-gray-400">
+                    <x-nav-link :href="route('transactionDetail.index')" :active="request()->routeIs('transactionDetail.index')" class="text-black hover:text-orange-900">
                         {{ __('Transaction Details') }}
                     </x-nav-link>
                    @endif

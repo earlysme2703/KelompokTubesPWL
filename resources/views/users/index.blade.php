@@ -5,75 +5,73 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6"> <!-- Mengurangi jarak untuk mendekatkan konten ke header -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Search users</h1>
-                    <form method="GET" action="{{ route('users.index') }}">
-                        <input 
-                            type="text" 
-                            name="search" 
-                            placeholder="Search users..." 
-                            value="{{ request('search') }}" 
-                            class="border rounded p-2">
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
-                    </form>
-                    <br>
-                    <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 inline-block">Tambah User</a>
 
+                    <!-- Form Pencarian dan Tombol Tambah -->
+                    <div class="flex justify-between items-center mb-4">
+                        <!-- Form Search -->
+                        <form method="GET" action="{{ route('users.index') }}" class="flex items-center space-x-2">
+                            <input 
+                                type="text" 
+                                name="search" 
+                                placeholder="Search users..." 
+                                value="{{ request('search') }}" 
+                                class="border rounded p-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                            <x-primary-button>Cari</x-primary-button>
+                        </form>
 
+                        <!-- Tombol Tambah User -->
+                        <a href="{{ route('users.create') }}">
+                            <x-primary-button>Tambah User</x-primary-button>
+                        </a>
+                    </div>
 
+                    <!-- Tabel Daftar User -->
                     <table class="table-auto w-full text-left border-collapse">
                         <thead>
-                            <tr>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
                                 <th class="border px-4 py-2">ID</th>
                                 <th class="border px-4 py-2">Nama</th>
                                 <th class="border px-4 py-2">Email</th>
                                 <th class="border px-4 py-2">Role</th>
-                                <th class="border px-4 py-2">Aksi</th>
+                                <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
+
                             </tr>
                         </thead>
                         <tbody>
-
-                         @foreach ($users as $user)
-                        <!-- @if ($user->name !== 'pustakawan')  -->
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->getRoleNames()->implode(', ') }}</td>
-                                <!-- <td>
-                                     @if(auth()->user()->hasRole('pustakawan')) -->
-                                        <x-primary-button tag="a" href="{{ route('users.edit', $user->id) }}">Edit</x-primary-button>
-                                        <x-danger-button
-                                            x-data=""
-                                            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-                                            x-on:click="$dispatch('set-action', '{{ route('users.destroy', $user->id) }}')">
-                                            Delete
-                                        </x-danger-button>
-                                    <!-- @endif -->
-                                <!-- </td>  -->
-                                <td class="border px-4 py-2">
+                            @foreach ($users as $user)
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="border px-4 py-2">{{ $loop->iteration }}</td>
+                                    <td class="border px-4 py-2">{{ $user->name }}</td>
+                                    <td class="border px-4 py-2">{{ $user->email }}</td>
+                                    <td class="border px-4 py-2">{{ $user->getRoleNames()->implode(', ') }}</td>
+                                    <td class="border px-4 py-2 flex space-x-2">
                                         <!-- Tombol Edit -->
-                                        <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 inline-block">Edit</a>
+                                        <a href="{{ route('users.edit', $user->id) }}">
+                                            <x-primary-button>Edit</x-primary-button>
+                                        </a>
 
                                         <!-- Form Hapus -->
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                            <x-danger-button>Hapus</x-danger-button>
                                         </form>
                                     </td>
-                            </tr>
-                        <!-- @endif -->
-                        @endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
-                        </table>
-                        <div>
-                            {{ $users->links() }}
-                        </div>
+                    </table>
 
+                    <!-- Pagination -->
+                    <div class="mt-4">
+                        {{ $users->links() }}
+                    </div>
+
+                    <!-- Modal Konfirmasi Hapus -->
                     <x-modal name="confirm-user-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">
                             @method('delete')
@@ -86,11 +84,10 @@
                             </p>
                             <div class="mt-6 flex justify-end">
                                 <x-secondary-button x-on:click="$dispatch('close')">Cancel</x-secondary-button>
-                                <x-danger-button class="ml-3">Delete!!!</x-danger-button>
+                                <x-danger-button class="ml-3">Delete</x-danger-button>
                             </div>
                         </form>
                     </x-modal>
-
                 </div>
             </div>
         </div>
