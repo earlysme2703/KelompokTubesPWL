@@ -59,7 +59,7 @@
 
                  
                     <div class="mt-4">
-                        {{ $products->withQueryString()->links() }}
+                        {{ $products->links() }}
                     </div>
 
                 </div>

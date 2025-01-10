@@ -14,7 +14,7 @@
                             <x-primary-button>Tambah Detail Transaksi</x-primary-button>
                         </a>
                         <form method="GET" action="{{ route('transactionDetail.index') }}" class="flex space-x-2">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan ID" class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan ID" class="border rounded-md px-4 py-2 text-gray-900 ">
                             <x-primary-button>Cari</x-primary-button>
                         </form>
                     </div>
@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             @forelse ($transactionDetails as $detail)
-                                <tr class="bg-white dark:bg-gray-800">
+                                <tr class="bg-white ">
                                     <td class="border px-4 py-2 ">{{ $detail->transaction_id }}</td>
                                     <td class="border px-4 py-2 ">{{ $detail->product->product_name ?? 'N/A' }}</td>
                                     <td class="border px-4 py-2 ">{{ $detail->quantity }}</td>
