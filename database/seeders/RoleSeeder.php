@@ -37,7 +37,7 @@ class RoleSeeder extends Seeder
         $supervisorRole->givePermissionTo(['read-transaksi', 'read-stok', 'update-stok' ,'manage-schedules']);  
 
         $manajerRole = Role::findByName('Manajer');
-        $manajerRole->givePermissionTo(['create-product', 'read-product', 'update-product', 'delete-product', 'create-pegawai', 'read-pegawai', 'update-pegawai', 'delete-pegawai', 'create-reports']);
+        $manajerRole->givePermissionTo(['create-product', 'read-product', 'update-product', 'delete-product', 'create-pegawai', 'read-pegawai', 'update-pegawai', 'delete-pegawai']);
 
         $kasirRole = Role::findByName('Kasir');
         $kasirRole->givePermissionTo(['create-transaksi', 'read-transaksi']);  

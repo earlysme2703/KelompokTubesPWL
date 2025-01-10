@@ -1,13 +1,21 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }} 
+            @if(auth()->check())  <!-- Periksa jika pengguna sudah login -->
+                 {{ auth()->user()->getRoleNames()->first() }}  <!-- Menampilkan role pengguna -->
+            @endif
+        </h2>
+    </x-slot>
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Dashboard Gudang</h1>
         
         <!-- Section: Stok Barang -->
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-4 mb-6">
+        <div class="bg-white  rounded shadow p-4 mb-6">
             <h2 class="text-xl font-semibold mb-4">Stok Barang</h2>
             <table class="table-auto w-full text-left">
                 <thead>
-                    <tr class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                    <tr class="bg-gray-200 text-gray-600">
                         <th class="px-4 py-2">Nama Produk</th>
                         <th class="px-4 py-2">Stok Tersedia</th>
                         <th class="px-4 py-2">Status</th>
@@ -34,11 +42,11 @@
         </div>
 
         <!-- Section: Pengiriman Barang -->
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-4 mb-6">
+        <div class="bg-white rounded shadow p-4 mb-6">
             <h2 class="text-xl font-semibold mb-4">Pengiriman Barang</h2>
             <table class="table-auto w-full text-left">
                 <thead>
-                    <tr class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                    <tr class="bg-gray-200 text-gray-600 ">
                         <th class="px-4 py-2">Nama Produk</th>
                         <th class="px-4 py-2">Jumlah</th>
                         <th class="px-4 py-2">Status</th>
@@ -60,11 +68,11 @@
         </div>
 
         <!-- Section: Permintaan Restok -->
-        <div class="bg-white dark:bg-gray-800 rounded shadow p-4">
+        <div class="bg-white rounded shadow p-4">
             <h2 class="text-xl font-semibold mb-4">Permintaan Restok</h2>
             <table class="table-auto w-full text-left">
                 <thead>
-                    <tr class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                    <tr class="bg-gray-200 text-gray-600">
                         <th class="px-4 py-2">Nama Produk</th>
                         <th class="px-4 py-2">Permintaan</th>
                         <th class="px-4 py-2">Status</th>

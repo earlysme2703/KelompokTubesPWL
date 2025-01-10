@@ -22,10 +22,10 @@
                         <thead>
                             <tr class="bg-gray-100 dark:bg-gray-700">
                                 <th class="border px-4 py-2 dark:border-gray-600">ID</th>
-                                <th class="border px-4 py-2 dark:border-gray-600">Tanggal Transaksi</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Cabang</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Pegawai</th>
                                 <th class="border px-4 py-2 dark:border-gray-600">Total</th>
+                                <th class="border px-4 py-2 dark:border-gray-600">Tanggal Transaksi</th>
                                 <th class="border px-4 py-2 dark:border-gray-600 w-24">Aksi</th>
                             </tr>
                         </thead>
@@ -33,10 +33,10 @@
                             @forelse ($transactions as $transaction)
                                 <tr class="bg-white dark:bg-gray-800">
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->id }}</td>
-                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->date }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->branch->branch_name ?? 'N/A' }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->employee->name ?? 'N/A' }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->total }}</td>
+                                    <td class="border px-4 py-2 dark:border-gray-600">{{ $transaction->date }}</td>
                                     <td class="border px-4 py-2 dark:border-gray-600 flex space-x-2">
                                         <a href="{{ route('transaction.edit', $transaction->id) }}">
                                             <x-primary-button>Edit</x-primary-button>

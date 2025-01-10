@@ -1,4 +1,12 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }} 
+            @if(auth()->check())  <!-- Periksa jika pengguna sudah login -->
+                 {{ auth()->user()->getRoleNames()->first() }}  <!-- Menampilkan role pengguna -->
+            @endif
+        </h2>
+    </x-slot>
     <div class="container">
         <h1 class="text-2xl font-bold mb-4">Dashboard Supervisor</h1>
         
