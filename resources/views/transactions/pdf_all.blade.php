@@ -10,14 +10,14 @@
     </style>
 </head>
 <body>
-    <h1>All Transactions Report</h1>
+    <h1>Semua Transaksi Report</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Date</th>
-                <th>Branch</th>
-                <th>Employee</th>
+                <th>Cabang</th>
+                <th>Karyawan</th>
+                <th>Tanggal</th>
                 <th>Total</th>
             </tr>
         </thead>
@@ -25,9 +25,9 @@
             @foreach ($transactions as $transaction)
                 <tr>
                     <td>{{ $transaction->id }}</td>
-                    <td>{{ $transaction->date }}</td>
                     <td>{{ $transaction->branch->branch_name }}</td>
                     <td>{{ $transaction->employee->name }}</td>
+                    <td>{{ $transaction->date }}</td>
                     <td>{{ $transaction->total }}</td>
                 </tr>
             @endforeach
