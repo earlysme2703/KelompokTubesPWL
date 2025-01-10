@@ -34,7 +34,7 @@
 
         <!-- Tombol untuk Memulai Transaksi Baru -->
         <div class="flex justify-center mb-8">
-            <a href="{{ route('transaction.create') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <a href="{{ route('transaction.create') }}" class="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                 Mulai Transaksi Baru
             </a>
         </div>
@@ -51,7 +51,6 @@
                             <th class="px-4 py-2">Tanggal</th>
                             <th class="px-4 py-2">Total Pembelian</th>
                             <th class="px-4 py-2">Kasir</th>
-                            <th class="px-4 py-2">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,9 +60,6 @@
                             <td class="px-4 py-2">2025-01-10</td>
                             <td class="px-4 py-2">Rp. 500.000</td>
                             <td class="px-4 py-2">Kasir 1</td>
-                            <td class="px-4 py-2">
-                                <a href="#" class="text-blue-500 hover:underline">Detail</a>
-                            </td>
                         </tr>
                         <tr class="border-b">
                             <td class="px-4 py-2">2</td>
@@ -71,9 +67,6 @@
                             <td class="px-4 py-2">2025-01-10</td>
                             <td class="px-4 py-2">Rp. 250.000</td>
                             <td class="px-4 py-2">Kasir 2</td>
-                            <td class="px-4 py-2">
-                                <a href="#" class="text-blue-500 hover:underline">Detail</a>
-                            </td>
                         </tr>
                         <!-- Tambahkan data transaksi lainnya -->
                     </tbody>

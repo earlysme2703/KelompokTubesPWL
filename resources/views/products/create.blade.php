@@ -12,7 +12,7 @@
                     <!-- Form untuk membuat produk baru -->
                     <form action="{{ route('product.store') }}" method="POST">
                         @csrf
-                        
+
                         <!-- Nama Produk -->
                         <div>
                             <label for="product_name" class="block text-sm font-medium text-gray-700">Product Name</label>
@@ -33,8 +33,8 @@
 
                         <!-- Tombol Simpan -->
                         <div class="flex justify-end space-x-4">
-                            <a href="{{ url('/product') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Cancel</a>
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save</button>
+                            <a href="{{ url('/product') }}" class="bg-black text-white px-4 py-2 rounded-md">Cancel</a>
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded-md">Save</button>
                         </div>
                     </form>
                 </div>

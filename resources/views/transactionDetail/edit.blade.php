@@ -40,8 +40,8 @@
 
                         <!-- Tombol Simpan -->
                         <div class="flex justify-end space-x-4">
-                            <a href="{{ route('transactionDetail.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Cancel</a>
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save Changes</button>
+                            <a href="{{ route('transactionDetail.index') }}" class="bg-black text-white px-4 py-2 rounded-md">Cancel</a>
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded-md">Save Changes</button>
                         </div>
                     </form>
                 </div>

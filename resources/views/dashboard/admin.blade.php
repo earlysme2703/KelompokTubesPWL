@@ -53,8 +53,43 @@
         </div>
         <div class="mt-6">
             <h3 class="text-xl font-semibold">Grafik Pemasukan & Pengeluaran Per Bulan</h3>
-            <!-- Implementasi Chart Grafik -->
-            <div id="grafik-pemasukan" style="height: 300px;"></div>
+            <div id="grafik-pemasukan">
+                <!-- Grafik menggunakan SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300">
+                    <!-- Gambar Sumbu X dan Y -->
+                    <line x1="50" y1="10" x2="50" y2="290" stroke="black" stroke-width="2"/>
+                    <line x1="50" y1="290" x2="490" y2="290" stroke="black" stroke-width="2"/>
+
+                    <!-- Grafik Batang Pemasukan -->
+                    <rect x="60" y="200" width="50" height="90" fill="green"/>
+                    <rect x="120" y="150" width="50" height="140" fill="green"/>
+                    <rect x="180" y="120" width="50" height="170" fill="green"/>
+                    <rect x="240" y="100" width="50" height="190" fill="green"/>
+                    <rect x="300" y="150" width="50" height="140" fill="green"/>
+                    <rect x="360" y="180" width="50" height="110" fill="green"/>
+                    <rect x="420" y="140" width="50" height="150" fill="green"/>
+
+                    <!-- Grafik Batang Pengeluaran -->
+                    <rect x="60" y="230" width="50" height="60" fill="red"/>
+                    <rect x="120" y="170" width="50" height="120" fill="red"/>
+                    <rect x="180" y="180" width="50" height="110" fill="red"/>
+                    <rect x="240" y="210" width="50" height="80" fill="red"/>
+                    <rect x="300" y="160" width="50" height="130" fill="red"/>
+                    <rect x="360" y="200" width="50" height="90" fill="red"/>
+                    <rect x="420" y="190" width="50" height="100" fill="red"/>
+
+                    <!-- Label Bulan -->
+                    <div class="container lg:px-40 pt-1">
+                        <text x="85" y="295" font-size="12" text-anchor="middle">Jan   </text>
+                        <text x="145" y="295" font-size="12" text-anchor="middle">Feb</text>
+                        <text x="205" y="295" font-size="12" text-anchor="middle">Mar</text>
+                        <text x="265" y="295" font-size="12" text-anchor="middle">Apr</text>
+                        <text x="325" y="295" font-size="12" text-anchor="middle">May</text>
+                        <text x="385" y="295" font-size="12" text-anchor="middle">Jun</text>
+                        <text x="445" y="295" font-size="12" text-anchor="middle">Jul</text>
+                    </div>
+                </svg>
+            </div>
         </div>
         <div class="mt-6">
             <h3 class="text-xl font-semibold">Kalender</h3>
