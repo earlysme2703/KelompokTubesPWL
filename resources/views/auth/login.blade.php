@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Platform As A Service</title>
+    <title>Jayusman Minimarket</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 </head>
@@ -13,7 +13,7 @@
     <div class="absolute top-4 left-4">
         <button class="text-white flex items-center">
             <img src="https://ucarecdn.com/fdc656a3-fce4-442b-8fe2-560beb9c6246/1732279541536.png" alt="EN" class="w-8 h-8 mr-2">
-            Platform as a Service
+            Jayusman Minimarket
         </button>
     </div>
 
