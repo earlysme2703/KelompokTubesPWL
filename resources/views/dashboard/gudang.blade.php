@@ -10,23 +10,19 @@
     <div class="container">
 
         <div class="container mx-auto p-6 lg:px-36 pt-16">
-            <!-- Statistik Gudang -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1: Total Stok Barang -->
                 <div class="bg-blue-100 p-6 rounded-lg shadow-md">
                     <h3 class="font-semibold text-lg">Total Stok Barang</h3>
                     <p class="text-3xl font-bold text-blue-600">500</p>
                     <a href="#" class="text-blue-500 hover:underline">Lihat Stok</a>
                 </div>
 
-                <!-- Card 2: Barang Hampir Habis -->
                 <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
                     <h3 class="font-semibold text-lg">Barang Hampir Habis</h3>
                     <p class="text-3xl font-bold text-yellow-600">12</p>
                     <a href="#" class="text-yellow-500 hover:underline">Lihat Barang</a>
                 </div>
 
-                <!-- Card 3: Barang yang Sudah Expired -->
                 <div class="bg-red-100 p-6 rounded-lg shadow-md">
                     <h3 class="font-semibold text-lg">Barang Expired</h3>
                     <p class="text-3xl font-bold text-red-600">5</p>
@@ -34,18 +30,15 @@
                 </div>
             </div>
 
-            <!-- Grafik atau Statistik -->
             <div class="mt-8">
                 <div class="bg-green-200 p-6 rounded-lg shadow-md">
                     <h3 class="font-semibold text-xl mb-4">Overview Stok Barang</h3>
                     <div class="relative w-full h-64">
-                        <!-- Flowbite Chart Component (Misalnya, bar chart) -->
                         <canvas id="stockChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Tabel Stok Barang -->
             <div class="mt-8">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="font-semibold text-xl mb-4">Daftar Stok Barang</h3>
@@ -78,7 +71,7 @@
                                     <td class="px-4 py-2">Rp. 10.000</td>
                                     <td class="px-4 py-2">2025-06-15</td>
                                 </tr>
-                                <!-- Tambahkan data stok barang lainnya -->
+                        
                             </tbody>
                         </table>
                     </div>
@@ -86,7 +79,6 @@
             </div>
         </div>
 
-        <!-- Script untuk Grafik atau Chart -->
         <script>
             var ctx = document.getElementById('stockChart').getContext('2d');
             var stockChart = new Chart(ctx, {

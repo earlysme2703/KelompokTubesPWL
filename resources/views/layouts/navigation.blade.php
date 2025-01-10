@@ -20,22 +20,22 @@
                         {{ __('User') }}
                     </x-nav-link>
                     @endrole
-                    @role('Admin')
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer'))
                     <x-nav-link :href="route('branch.index')" :active="request()->routeIs('branch.index')" class="text-black hover:text-orange-900">
                         {{ __('Cabang') }}
                     </x-nav-link>
-                    @endrole
+                    @endif
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer'))
                     <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')" class="text-black hover:text-orange-900">
                         {{ __('Pegawai') }}
                     </x-nav-link>
                     @endif
-                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Gudang'))
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Gudang'))
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')" class="text-black hover:text-orange-900">
                         {{ __('Produk') }}
                     </x-nav-link>
                     @endif
-                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir') || auth()->user()->hasRole('Supervisor'))
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Kasir') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Manajer'))
                     <x-nav-link :href="route('transaction.index')" :active="request()->routeIs('transaction.index')" class="text-black hover:text-orange-900">
                         {{ __('Transaksi') }}
                     </x-nav-link>

@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-black leading-tight">
             {{ __('Edit User') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
 
                     <form method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data" class="mt-6 space-y-6">
                         @method('PATCH')
@@ -32,7 +32,7 @@
 
                         <!-- Input Password -->
                         <div class="max-w-xl">
-                            <x-input-label for="password" value="Password (Kosongkan jika tidak ingin mengubah)" />
+                            <x-input-label for="password" />
                             <x-text-input id="password" type="password" name="password" class="mt-1 block w-full" />
                             <x-input-error class="mt-2" :messages="$errors->get('password')" />
                         </div>

@@ -5,52 +5,46 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
 
                     <form method="post" action="{{ route('users.store') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
                         @csrf
-
-                        <!-- Nama -->
                         <div class="max-w-xl">
                             <x-input-label for="name" value="Nama" />
                             <x-text-input id="name" type="text" name="name" class="mt-1 block w-full"
                                 value="{{ old('name') }}" required />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
-
-                        <!-- Email -->
                         <div class="max-w-xl">
                             <x-input-label for="email" value="Email" />
                             <x-text-input id="email" type="email" name="email" class="mt-1 block w-full"
                                 value="{{ old('email') }}" required />
                             <x-input-error class="mt-2" :messages="$errors->get('email')" />
                         </div>
-
-                        <!-- Password -->
                     <div class="max-w-xl">
                         <x-input-label for="password" value="Password" />
                         <x-text-input id="password" type="password" name="password" class="mt-1 block w-full" required />
                         <x-input-error class="mt-2" :messages="$errors->get('password')" />
                     </div>
-
-                    <!-- Confirm Password -->
                     <div class="max-w-xl">
                         <x-input-label for="password_confirmation" value="Confirm Password" />
                         <x-text-input id="password_confirmation" type="password" name="password_confirmation" class="mt-1 block w-full" required />
                         <x-input-error class="mt-2" :messages="$errors->get('password_confirmation')" />
                     </div>
-
-                        <!-- Assign Role -->
                         <div class="max-w-xl">
                             <x-input-label for="role" value="Role" />
                             <select id="role" name="role" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                                    @if ($role->name !== 'admin') {{-- Memastikan tidak menampilkan role admin --}}
+                                        <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                            {{ ucfirst($role->name) }}
+                                        </option>
+                                    @endif
                                 @endforeach
-                            </select>
+                            </select>                            
                             <x-input-error class="mt-2" :messages="$errors->get('role')" />
                         </div>
 

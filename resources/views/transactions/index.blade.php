@@ -7,31 +7,31 @@
 
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 ">
+            <div class="bg-white shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 ">
                     <div class="flex justify-between items-center mb-4">
                         <a href="{{ route('transaction.create') }}">
                             <x-primary-button>Tambah Transaksi</x-primary-button>
                         </a>
                         <form method="GET" action="{{ route('transaction.index') }}" class="flex space-x-2">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari transaksi..." class="border rounded-md px-4 py-2 text-gray-900 dark:text-gray-100 dark:bg-gray-700">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari transaksi..." class="border rounded-md px-4 py-2 text-gray-900">
                             <x-primary-button>Cari</x-primary-button>
                         </form>
                     </div>
-                    <table class="table-auto w-full text-left border-collapse text-gray-900 dark:text-gray-100">
+                    <table class="table-auto w-full text-left border-collapse text-gray-900 ">
                         <thead>
-                            <tr class="bg-gray-100 dark:bg-gray-700">
+                            <tr class="bg-gray-100">
                                 <th class="border px-4 py-2 ">ID</th>
-                                <th class="border px-4 py-2 >Cabang</th>
-                                <th class="border px-4 py-2 >Pegawai</th>
-                                <th class="border px-4 py-2 >Total</th>
-                                <th class="border px-4 py-2 >Tanggal Transaksi</th>
+                                <th class="border px-4 py-2 ">Cabang</th>
+                                <th class="border px-4 py-2 ">Pegawai</th>
+                                <th class="border px-4 py-2 ">Total</th>
+                                <th class="border px-4 py-2 ">Tanggal Transaksi</th>
                                 <th class="border px-4 py-2  w-24">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($transactions as $transaction)
-                                <tr class="bg-white dark:bg-gray-800">
+                                <tr class="bg-white">
                                     <td class="border px-4 py-2  ">{{ $transaction->id }}</td>
                                     <td class="border px-4 py-2 ">{{ $transaction->branch->branch_name ?? 'N/A' }}</td>
                                     <td class="border px-4 py-2">{{ $transaction->employee->name ?? 'N/A' }}</td>
