@@ -47,9 +47,10 @@
                         </div>
 
                         <!-- Tombol Simpan -->
-                        <div class="flex justify-end space-x-4">
-                            <a href="{{ url('/transaction') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Cancel</a>
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save Changes</button>
+                        <div class="flex justify-end space-x-4 pt-8">
+                            <a href="{{ url('/transaction') }}" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">Cancel
+                            </a>
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600">Save Changes</button>
                         </div>
                     </form>
                 </div>
