@@ -13,7 +13,7 @@
                     <form action="{{ route('branch.update', $branch->id) }}" method="POST" class="space-y-6">
                         @csrf
                         @method('PUT')
-                        
+
                         <!-- Nama Cabang -->
                         <div>
                             <label for="branch_name" class="block text-sm font-medium text-gray-700">Branch Name</label>
@@ -34,7 +34,7 @@
 
                         <!-- Tombol Simpan -->
                         <div class="flex justify-end space-x-4">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save Changes</button>
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600">Save Changes</button>
                         </div>
                     </form>
                 </div>
