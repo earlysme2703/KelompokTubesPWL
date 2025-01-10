@@ -12,9 +12,9 @@
 <body>
     <h1>Transaction Report</h1>
     <p><strong>ID:</strong> {{ $transaction->id }}</p>
-    <p><strong>Date:</strong> {{ $transaction->date }}</p>
     <p><strong>Branch:</strong> {{ $transaction->branch->branch_name }}</p>
     <p><strong>Employee:</strong> {{ $transaction->employee->name }}</p>
+    <p><strong>Date:</strong> {{ $transaction->date }}</p>
     <h2>Details</h2>
     <table>
         <thead>

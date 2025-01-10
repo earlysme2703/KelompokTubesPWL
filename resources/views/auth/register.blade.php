@@ -65,12 +65,6 @@
                         placeholder="Konfirmasi Password" required>
                 </div>
 
-                <div class="flex items-center">
-                    <input id="terms" type="checkbox" 
-                        class="w-4 h-4 rounded bg-[#003344] border-gray-600 text-[#00ff9d] focus:ring-[#00ff9d]">
-                    <label for="terms" class="ml-2 text-sm text-white">Saya setuju dengan <a href="#" class="text-[#00ff9d] hover:underline">Syarat dan Ketentuan</a></label>
-                </div>
-
                 <button type="submit" 
                     class="w-full text-white bg-[#00ff9d] hover:bg-[#00dd85] focus:ring-4 focus:ring-[#00ff9d]/50 font-medium rounded-lg text-sm px-5 py-3 text-center mt-6">
                     Daftar
